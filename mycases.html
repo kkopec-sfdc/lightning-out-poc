@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta http-equiv='cache-control' content='no-cache'> 
+        <meta http-equiv='expires' content='0'> 
+        <meta http-equiv='pragma' content='no-cache'>
+    </head>
+    
+    <h1>Lightning Out POC - MyCases</h1>
+    <script src="https://qiagen--cfsales.sandbox.my.salesforce.com/lightning/lightning.out.js"></script>
+    <div userId="00Q1l000008OUHaEAO"/>
+    <div data-lightning-out="true"></div>
+
+  <script>
+
+    const userIdFromSurroundingPageDiv = document.querySelector("[userId]");
+    const userIdFromSurroundingPage = userIdFromSurroundingPageDiv.getAttribute("userId");
+
+    const appName = 'c:LightningOutAuraWrapper';
+    const componentName = 'c:mycases';
+
+    <!-- lightningEndpoint requires a terminal '/' character, otherwise this will not work -->
+    const lightningEndpoint = 'https://qiagen--cfsales.sandbox.my.site.com/lightningoutpoc/';
+    
+    const targetElement = document.querySelector("[data-lightning-out]");
+    const componentAttributes = {
+      firstName: userIdFromSurroundingPage
+    };
+
+    
+
+    $Lightning.use(
+            appName,
+            function (){
+              $Lightning.createComponent(
+                      componentName,
+                      componentAttributes,
+                      targetElement,
+                      function (cmp){
+                        console.log('lightning component created');
+                      }
+              );
+            },
+            lightningEndpoint
+    );
+
+
+  </script>
+</html>
